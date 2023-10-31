@@ -1,0 +1,24 @@
+#include <stdio.h>
+#include <unistd.h>
+#include <sys/wait.h>
+int	main()
+{
+	int id = fork();
+	if (id != 0) //processo pai
+	{
+//		wait(0);
+	//	printf("Parent process id: %d\n", id); //o processo pai recebe o id do seu pai
+		printf("Current ID: %d, parent ID: %d\n", getpid(), getppid());
+	}
+	else //processo filho
+	{
+	//	printf("Child process id: %d\n", id); //0
+		printf("Current ID: %d, parent ID: %d\n", getpid(), getppid());
+	}
+	int	res = wait(NULL);
+	if (res == -1) 
+		printf("No children to wait for, probably because I'm the child\n");
+	else
+		printf("The child process %d finished your execution\n", res);
+	return (0);
+}
