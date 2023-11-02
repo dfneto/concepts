@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <sys/wait.h>
+
 /*
  * When performing input or output operations, C often uses buffering. Instead of writing data directly to the destination (like a file or the terminal) every time a write is requested, the data is temporarily stored in a buffer. After the buffer is filled, or under certain conditions, the data is then flushed to its destination. This buffering mechanism enhances performance by reducing the number of direct write or read operations.
 

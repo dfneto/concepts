@@ -4,6 +4,9 @@
 #include <sys/wait.h>
 #include <errno.h>
 
+/*
+* It's important to protect pipe, ffork, write and read!!
+*/
 int main()
 {
 	int	id1 = fork();

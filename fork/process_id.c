@@ -2,6 +2,10 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <sys/wait.h>
+
+/*
+* It's important to protect pipe, ffork, write and read!!
+*/
 int	main()
 {
 	printf("My id before fork: %d\n", getpid());
