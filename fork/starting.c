@@ -23,8 +23,7 @@ int	main()
 		n = 1;
 	else
 		n = 6;
-	if (id != 0)
-		wait(0);
+	wait(0); //o filho retorna -1, o pai retorna o id do processo filho encerrado, assim que tem que esperar pelo filho encerrar
 	for (i = n; i < n + 5; i++)
 	{
 		printf("%d ", i);
