@@ -1,3 +1,4 @@
+//fonte https://www.youtube.com/watch?v=tcYo6hipaSA&list=PLfqABt5AS4FkW5mOn2Tn9ZZLLDwA3kZUY&index=2
 #include <stdio.h>
 #include <unistd.h>
 #include <sys/wait.h>

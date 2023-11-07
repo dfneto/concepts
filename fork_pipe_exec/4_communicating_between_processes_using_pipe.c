@@ -1,3 +1,4 @@
+//fonte https://www.youtube.com/watch?v=Mqb2dVRe0uo&list=PLfqABt5AS4FkW5mOn2Tn9ZZLLDwA3kZUY&index=7
 #include <unistd.h>
 #include <stdio.h>
 

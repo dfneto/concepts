@@ -4,14 +4,14 @@
 #include <sys/wait.h>
 
 /*
-* It's important to protect pipe, ffork, write and read!!
+* It's important to protect pipe, fork, write and read!!
 */
 int	main()
 {
 	printf("My id before fork: %d\n", getpid());
 	printf("----------------------------\n");
 	int id = fork();
-	int	res = wait(NULL);
+	int	res = wait(NULL); //returns -1 quando é o processo filho e o id do filho quando o pai executa
 	if (res != -1) //processo pai
 	{
 		printf("The child process %d finished your execution\n", res);
