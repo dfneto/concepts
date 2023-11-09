@@ -3,7 +3,7 @@
 #include <stdio.h>
 
 /*
-* It's important to protect pipe, ffork, write and read!!
+* It's important to protect pipe, fork, write and read!!
 */
 
 /*

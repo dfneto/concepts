@@ -8,7 +8,9 @@ int main()
 	execlp("ping", "ping", "-c", "3", "google.com", NULL);
 	printf("THIS SHOULD NOT BE PRINTED ON THE TERMINAL!"); //it's not executed unless you have an error in exec
 	return (0);
-	//para eu fazer algo no mesmo programa (creio que no mesmo processo também) eu devo fazer um fork: https://github.com/dfneto/concepts/blob/main/fork_pipe_exec/7_exec_comands.c
+	//para eu fazer algo no mesmo programa (creio que no mesmo processo também) eu devo fazer um fork:
+	// https://github.com/dfneto/concepts/blob/main/fork_pipe_exec/7_exec_and_redirection.c
+	// e executar o programa com exec no filho
 }
 /*
 A função execlp executa arquivos executáveis, programas (.exe no windows), 

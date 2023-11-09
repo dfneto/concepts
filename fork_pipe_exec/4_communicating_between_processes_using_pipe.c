@@ -3,6 +3,10 @@
 #include <stdio.h>
 
 /*
+* It's important to protect pipe, fork, write and read!!
+*/
+
+/*
 * In this example the child process will write in the pipe
 * and the main process will read from the pipe
 */
@@ -17,7 +21,7 @@ int main()
 	printf("fd0 - to read: %d\n", fd[0]);
 	printf("fd1 - to write: %d\n", fd[1]);
 	
-	int	id = fork(); //I should protect the fork, the write and the read checking if it's -1
+	int	id = fork();
 	if (id == 0) //child process will write to the pipe
 	{
 		close(fd[0]);
