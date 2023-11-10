@@ -3,6 +3,12 @@
 #include <stdio.h>
 #include <sys/wait.h>
 
+/*
+* We are going to simulate the pipe of bash using 3 process: the main that will create a child
+* execute the ping and another ont to execute the grep. But we also could have just 2 process
+* with the main executing the grep.
+*/
+
 int main()
 {
     int fd[2];
@@ -24,7 +30,6 @@ int main()
         execlp("ping", "ping", "-c", "5", "google.com", NULL);
     }
 
-//TODO: tentar executar isso no pai
     int pid2 = fork();
     if (pid2 == -1)
         return (3);
@@ -34,9 +39,8 @@ int main()
         close(fd[0]);
         close(fd[1]);
         execlp("grep", "grep", "round-trip", NULL); 
-        //como a saída deste processo não mudou (stdout) devemos ver a saída do comando na tela
+        //como a saída deste processo não mudou (stdout) devemos continuar vendo a saída do comando na tela
     }
-
     /* 
         grep fica constantemente lendo do stdin (que neste caso é o pipe), esperando por inputs,
         até que todos os writers (fd1) sejam fechados. Já fechamos eles nos processos filhos e
