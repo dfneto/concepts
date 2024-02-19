@@ -4,20 +4,12 @@
 #include <sys/wait.h>
 
 /*
- * When performing input or output operations, C often uses buffering. Instead of writing data directly to the destination (like a file or the terminal) every time a write is requested, the data is temporarily stored in a buffer. After the buffer is filled, or under certain conditions, the data is then flushed to its destination. This buffering mechanism enhances performance by reducing the number of direct write or read operations.
-
-* The fflush() function is used to force the buffer to be written (flushed) to the destination before the buffer is full or before a normal flush would occur.
+* wait says: stop the execution until the child process has finished his execution 
+* Com wait basicamente vc tem primeiro o filho sendo executado e depois o pai.
 */
-/*
- *the **`wait()`** function is a system call used to make the parent process wait until all of its child processes have terminated.
-
-- If successful, **`wait()`** returns the Process ID (PID) of the terminated child.
-- If the calling process has no child processes, **`wait()`** returns **`1`**.
-Com wait basicamente vc tem primeiro o filho sendo executado e depois o pai.
- */
 int	main()
 {
-	int	id = fork();
+	int	id = fork(); //for the father process returns the pid of the newly created child process and for the child process returns 0. 
 	int	n;
 	int i;
 
@@ -25,7 +17,8 @@ int	main()
 		n = 1;
 	else
 		n = 6;
-	wait(0); //o filho retorna -1, o pai retorna o id do processo filho encerrado, assim que tem que esperar pelo filho encerrar
+	if (id != 0)
+		wait(0); // o processo pai vai esperar pelo término do processo filho
 	for (i = n; i < n + 5; i++)
 	{
 		printf("%d ", i);
@@ -35,3 +28,14 @@ int	main()
 		printf("\n");
 	return (0);
 }
+/*
+* When performing input or output operations, C often uses buffering. 
+* Instead of writing data directly to the destination (like a file or the terminal) 
+* every time a write is requested, the data is temporarily stored in a buffer. 
+* After the buffer is filled, or under certain conditions, the data is then 
+* flushed to its destination. This buffering mechanism enhances performance 
+* by reducing the number of direct write or read operations.
+
+* The fflush() function is used to force the buffer to be written (flushed)
+* to the destination before the buffer is full or before a normal flush would occur.
+*/
