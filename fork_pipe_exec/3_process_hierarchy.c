@@ -24,11 +24,11 @@ int main()
 	// z e y sempre serão chamados antes de x, que por sua vez sempre será chamado antes do main
 	// como são três filhos vamos entrar 3x nesse loop, até que o processo principal não terá filhos
 	// e wait retornará -1
-	while ((child_pid = wait(NULL)) != -1 || errno != ECHILD) //o pai fica parado aqui esperando um filho terminar sua execução, o filho
+	while ((child_pid = wait(NULL)) != -1 || errno != ECHILD) //o pai fica parado aqui esperando no wait um filho terminar sua execução, o filho
 		printf("I'm process %d and my child (%d) has just finished\n", getpid(), child_pid); //por sua vez nunca entra nesse while
-		//porque o wait já de cara retorna -1 (no caso do pai o wait espera o filho terminar, que lhe envia seu id e então o
-		//wait retorna o id do filho)
-	if (id1 == 0)
+		//porque o wait já de cara retorna -1. Quando o filho terminar, ele envia seu id pro wait que retorna para o pai que entra no while
+		//e que depois volta a esperar no wait. Assim o pai fica no while até que todos seus filhos temrinem sua execução e então
+	if (id1 == 0) //segue o fluxo do programa.
 	{
 		if (id2 == 0)
 			printf("I'm the process y (%d)\n", getpid());
@@ -43,10 +43,13 @@ int main()
 			printf("I'm the parent process (%d)\n", getpid());
 	}
 }
-
-
 /* 
 * To ensure a parent process waits until all of its child processes have terminated, 
-the parent must use wait() in a loop, calling it repeatedly until it returns -1, 
-indicating that there are no more child processes to wait for, like: while (wait(NULL) > 0);
+* the parent must use wait() in a loop, calling it repeatedly until it returns -1, 
+* indicating that there are no more child processes to wait for, like: while (wait(NULL) > 0);
+* Porque o processo pai fica esperando. Um filho morre, o pai recebe seu id (maior que 0), entra 
+* no while , depois volta pra condição do while e encontra o wait. Logo, o pai volta a esperar.
+* Outro filho morre, wait retorna o id para o pai que entra no while, executa o while e volta
+* pro wait. Se o pai não tem mais filhos então wait retorna -1, o pai não entra no while e 
+* segue sua execução. Assim o pai esperou todos os filhos terminarem sua execução.
 */

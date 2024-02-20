@@ -33,7 +33,7 @@ int main() {
         printf("Parent (PID: %d) detected child (PID: %d) termination.\n", getpid(), pid);
     }
 
-    pq so imprime isso uma vez?
+    //Somente o pai vai imprimir isso porque os filhos fizeram exit(EXIT_SUCCESS)
     printf("Parent (PID: %d) has no more child processes. Exiting.\n", getpid());
     return EXIT_SUCCESS;
 }

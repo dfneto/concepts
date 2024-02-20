@@ -29,6 +29,7 @@ int	main()
 	return (0);
 }
 /*
+* fflush:
 * When performing input or output operations, C often uses buffering. 
 * Instead of writing data directly to the destination (like a file or the terminal) 
 * every time a write is requested, the data is temporarily stored in a buffer. 
